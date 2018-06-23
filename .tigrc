@@ -1,0 +1,12 @@
+set vertical-split = false
+# color-theme
+color default default default normal
+color cursor white blue bold
+color status green default 
+color delimiter magenta default
+color "diff --" yellow default
+color "@@" magenta default
+color "+" green default
+
+# main viewの左端にcommitID表示
+set main-view = id date author commit-title:graph=yes,refs=yes

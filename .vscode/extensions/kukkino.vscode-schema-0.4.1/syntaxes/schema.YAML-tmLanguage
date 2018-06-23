@@ -1,0 +1,311 @@
+fileTypes:
+    - schema
+name: 'SpatialOS Schema'
+scopeName: source.schema
+uuid: 8751c4b8-ddba-49e9-bc2b-692b27305ffc
+patterns:
+    -
+        include: '#package'
+    -
+        include: '#import'
+    -
+        include: '#comment'
+    -
+        include: '#enum-declaration'
+    -
+        include: '#type-declaration'
+    -
+        include: '#component-declaration'
+repository:
+    package:
+        name: meta.package
+        match: '(package)(\s+([\w\.]+)\s*(;)?)?'
+        captures:
+            '1':
+                name: keyword.other.package.schema
+            '3':
+                name: entity.name.type.package.schema
+            '4':
+                name: punctuation.terminator.statement.schema
+    import:
+        name: meta.import
+        match: '(import)(\s+("[\w\.\/-]*")\s*(;)?)?'
+        captures:
+            '1':
+                name: keyword.other.import.schema
+            '3':
+                name: string.quoted.double.schema
+            '4':
+                name: punctuation.terminator.statement.schema
+    line-comment:
+        name: comment.line.double-slash.schema
+        begin: '//'
+        beginCaptures:
+            '0':
+                name: punctuation.definition.comment.schema
+        end: '$\n?'
+    block-comment:
+        name: comment.block.schema
+        begin: '/\*'
+        beginCaptures:
+            '0':
+                name: punctuation.definition.comment.schema
+        end: '\*/'
+        endCaptures:
+            '0':
+                name: punctuation.definition.comment.schema
+    comment:
+        patterns:
+            -
+                include: '#block-comment'
+            -
+                include: '#line-comment'
+    type-builtin:
+        match: '\b(bool|uint32|uint64|int32|int64|sint32|sint64|fixed32|fixed64|sfixed32|sfixed64|float|double|string|bytes|Coordinates|Vector3d|Vector3f|EntityId|EntityPosition)\b'
+        captures:
+            '1':
+                name: keyword.type.schema
+    type-generic:
+        begin: '\b(map|list|option)(<)\s*'
+        beginCaptures:
+            '1':
+                name: keyword.type.schema
+            '2':
+                name: punctuation.definition.typeparameters.begin.schema
+        end: '\s*(>)'
+        endCaptures:
+            '1':
+                name: punctuation.definition.typeparameters.end.schema
+        patterns:
+            -
+                include: '#type'
+            -
+                match: '\s*(,)\s*'
+                captures:
+                    '1':
+                        name: punctuation.separator.comma.schema
+    type-custom:
+        match: '\b(\w+(?:\.\w+)*)\b'
+        captures:
+            '1':
+                name: storage.type.schema
+    type:
+        patterns:
+            -
+                include: '#type-generic'
+            -
+                include: '#type-builtin'
+            -
+                include: '#type-custom'
+    transient-type:
+        begin: '\b(transient)\s+(map|list|option)(<)\s*'
+        beginCaptures:
+            '1':
+                name: keyword.other.transient.schema
+            '2':
+                name: keyword.type.schema
+            '3':
+                name: punctuation.definition.typeparameters.begin.schema
+        end: '\s*(>)'
+        endCaptures:
+            '1':
+                name: punctuation.definition.typeparameters.end.schema
+        patterns:
+            -
+                include: '#type'
+            -
+                match: '\s*(,)\s*'
+                captures:
+                    '1':
+                        name: punctuation.separator.comma.schema
+    constant:
+        name: constant.language.boolean.schema
+        match: '\b(true|false)\b'
+    enum-member:
+        name: meta.enum.member
+        match: '(\w+)\s*((\=)\s*((\d+)\s*(\;)?)?)?'
+        captures:
+            '1':
+                name: entity.name.variable.enum-member.schema
+            '3': 
+                name: keyword.operator.assignment.schema
+            '5': 
+                name: constant.numeric.integer.schema
+            '6':
+                name: punctuation.terminator.statement.schema
+    enum-declaration:
+        name: meta.enum
+        begin: '(enum)(\s+(\w+)\s*(\{)?)?'
+        beginCaptures:
+            '1':
+                name: keyword.other.enum.schema
+            '3':
+                name: entity.name.type.enum.schema
+            '4':
+                name: punctuation.curlybrace.open.schema
+        end: '\}'
+        endCaptures:
+            '0':
+                name: punctuation.curlybrace.close.schema
+        patterns:
+            -
+                include: '#enum-member'
+            -
+                include: '#comment'
+    field:
+        # note: doesn't support generic inside generic
+        match: '((?:transient\s+)?(?:\w+(?:\.\w+)*)(?:\<[\w\s,\.]+\>)?)(?:\s+(\w+)(?:\s*(\=)(?:\s*(\d+)\s*(\;)?)?)?)?'
+        captures:
+            '1': 
+                patterns:
+                    -
+                        include: '#transient-type'
+                    -
+                        include: '#type'
+            '2':    
+                name: entity.name.variable.member.schema
+            '3':
+                name: keyword.operator.assignment.schema
+            '4':
+                name: constant.numeric.integer.schema
+            '5':
+                name: punctuation.terminator.statement.schema
+    type-declaration:
+        name: meta.type
+        begin: '(type)(\s+(\w+)\s*(\{)?)?'
+        beginCaptures:
+            '1':
+                name: keyword.other.type.schema
+            '3':
+                name: entity.name.type.type.schema
+            '4':
+                name: punctuation.curlybrace.open.schema
+        end: '\}'
+        endCaptures:
+            '0':
+                name: punctuation.curlybrace.close.schema
+        patterns:
+            -
+                include: '$self'
+            -
+                include: '#field'
+            -
+                include: '#comment'
+    id:
+        match: '(id)(?:\s*(\=)(?:\s*(\d+)\s*(\;)?)?)?'
+        captures:
+            '1':
+                name: entity.name.variable.member.schema
+            '2':
+                name: keyword.operator.assignment.schema
+            '3':
+                name: constant.numeric.integer.schema
+            '4':
+                name: punctuation.terminator.statement.schema
+    command:
+        match: '(command)(?:\s+((?:\w+(?:\.\w+)*)(?:\<[\w\s,\.]+\>)?)(?:\s+(\w+)(?:\s*(?:(\()((?:\w+(?:\.\w+)*)(?:\<[\w\s,\.]+\>)?)(?:(\))\s*(\;)?)?)?)?)?)?'
+        captures:
+            '1':
+                name: keyword.other.command.schema
+            '2':
+                patterns:
+                    -
+                        include: '#type'
+            '3':
+                name: entity.name.variable.member.schema
+            '4':
+                name: punctuation.parenthesis.open.schema
+            '5':
+                patterns:
+                    -
+                        include: '#type'
+            '6':
+                name: punctuation.parenthesis.close.schema
+            '7':
+                name: punctuation.terminator.statement.schema
+    command-legacy:
+        match: '(command)(?:\s+((?:\w+(?:\.\w+)*)(?:\<[\w\s,\.]+\>)?)(?:\s+(\w+)(?:\s+(returns)(?:\s+((?:\w+(?:\.\w+)*)(?:\<[\w\s,\.]+\>)?)\s*(\;)?)?)?)?)?'
+        captures:
+            '1':
+                name: keyword.other.command.schema
+            '2':
+                patterns:
+                    -
+                        include: '#type'
+            '3':
+                name: entity.name.variable.member.schema
+            '4':
+                name: keyword.other.command-returns.schema
+            '5':
+                patterns:
+                    -
+                        include: '#type'
+            '6':
+                name: punctuation.terminator.statement.schema
+    event:
+        match: '(event)(?:\s+((?:\w+(?:\.\w+)*)(?:\<[\w\s,\.]+\>)?)(?:\s+(\w+)\s*(\;)?)?)?'
+        captures:
+            '1':
+                name: keyword.other.event.schema
+            '2':
+                patterns:
+                    -
+                        include: '#type'
+            '3':
+                name: entity.name.variable.member.schema
+            '4':
+                name: punctuation.terminator.statement.schema
+    option:
+        match: '(option)(?:\s+(\w+)(?:\s*(\=)(?:\s*(\w+)\s*(\;)?)?)?)?'
+        captures:
+            '1': 
+                name: keyword.other.option.schema
+            '2':
+                name: entity.name.variable.member.schema
+            '3': 
+                name: keyword.operator.assignment.schema
+            '4':
+                patterns:
+                    -
+                        include: '#constant'
+            '5':
+                name: punctuation.terminator.statement.schema
+    data:
+        name: meta.component.body
+        match: '(data)(?:\s+((?:\w+(?:\.\w+)*)(?:\<[\w\s,\.]+\>)?)\s*(\;)?)?'
+        captures:
+            '1':
+                name: keyword.other.data.schema
+            '2':
+                patterns:
+                    -
+                        include: '#type'
+            '3':
+                name: punctuation.terminator.statement.schema
+    component-declaration:
+        name: meta.component
+        begin: '(component)(?:\s+(\w+)\s*(\{)?)?'
+        beginCaptures:
+            '1':
+                name: keyword.other.component.schema
+            '2':
+                name: entity.name.type.component.schema
+            '3':
+                name: punctuation.curlybrace.open.schema
+        end: '\}'
+        endCaptures:
+            '0':
+                name: punctuation.curlybrace.close.schema
+        patterns:
+            -
+                include: '#id'
+            -
+                include: '#command'
+            -
+                include: '#data'
+            -
+                include: '#event'
+            -
+                include: '#field'
+            -
+                include: '#comment'

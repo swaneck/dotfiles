@@ -1,0 +1,193 @@
+_HiStOrY_V2_
+User
+:q
+$post\040=\040App\134Post::find(1);
+$post->files
+$post->files
+$post->files
+$post\040=\040App\134Post::find(1);
+$post->files
+$post\040=\040App\134Post::find(1);
+$post->files
+$post\040=\040App\134Post::find(1);
+$post->files
+show\040databases;
+App\134User:all()->toArray();
+App\134User::all()->toArray();
+Mail::raw('Test\040Mail',\040function($message)\040{\040$message->to('somebody@example.com')->subject('test');\040});
+Mail::raw('Test\040Mail',\040function($message)\040{\040$message->to('somebody@example.com')->subject('test');\040});
+$article\040=\040new\040App\134article();
+$article->toArray();
+$article->title='初めてのタイトル';
+$article->body='かくかくしかじか';
+$article->published_at\040=\040Carbon\134Carbon::now();
+$article->toArray();
+$article->save();
+App\134Article::all()->toArray()
+$article\040=\040new\040App\134Article;
+$article->title\040=\040'2件目の記事'
+$article->body\040=\040'hogehoge';
+$article->published_at\040=\040Carbon\134Carbon::now();
+$article->save();
+App\134Article::all()->toArray();
+App\134Article::find(1)->toArray();
+App\134Article::find(2)->toArray();
+App\134Article::findOrFail(2)->toArray();
+App\134Article::findOrFail(3)->toArray();
+App\134Article::where('id',\040'>'\040,\0400)->get()->toArray();
+App\134Article::where('id',\040'>'\040,\0401)->get()->toArray();
+App\134Article::count();
+App\134Article::where('id',\040'>',\0401)->count();
+$article\040=\040App\134Article::find(2);
+$article->body\040=\040'hogehoge';
+$article->save();
+$article\040=\040App\134Article::find(2);
+$article->body\040=\040'ふがふが';
+$article->save();
+App\134Article::find(2)->toArray();
+App\134Article->toArray();
+$article\040=\040App\134Article::find(2);
+$article->delete();
+App\134Article::all()->toArray();
+App\134Article::create(['title'\040=>\040'3件目の記事',\040'body'=>'我輩は猫である',\040'published_at'=>Carbon\134Carbon::now()]);
+App\134Article::create(['title'=>'3件目の記事',\040'body'=>'我輩は猫である',\040'published_at'=>Carbon\134Carbon::now()]);
+exit
+App\134Article::create(['title'=>'3件目の記事',\040'body'=>'我輩は猫である',\040'published_at'=>Carbon\134Carbon::now()]);
+App\134Article::all()->toArray();
+$article\040=\040App\134Article::first();
+$article->published_at
+$article->published_at\040=\040"2017-04-24\04013:26:00"
+$article->published_at
+$article\040=\040App\134Article::first();
+$article->published_at
+exit
+$article\040=\040App\134Article::first();
+$article->published_at
+$article->published_at\040=\040"2017-04-24\04013:28:00"
+$article->published_at
+$tag_diary\040=\040App\134Tag::create(['name'\040=>\040'diary'])
+$tag_work\040=\040App\134Tag::create(['name'\040=>\040'work']);
+$tag_hobby\040=\040App\134Tag::create(['name'\040=>\040'hobby']);
+$tag_family\040=\040App\134Tag::create(['name'\040=>\040'family']);
+App\134Tag::all()->toArray();
+App\134Tag::lists('name');
+$article\040=\040App\134Aritcle::first();
+$article\040=\040App\134Article::first();
+$article->tags()->attach($tag_diary->id);
+DB::select('select\040*\040from\040article_tag');
+$article\040=\040App\134Article::first();
+$article->tags->toArray();
+exit
+$post = new App\Post();
+$article->toArray();
+$post->toArray();
+$post->title = '初めてのタイトル';
+$post->body = '記事が入ります。';
+$article->published_at = Carbon\Carbon::now();
+$post->toArray();
+$post->save();
+$post->password = 'dsajffa';
+$post->sla = 'fdaf';
+$post->toArray();
+$post->save();
+exit
+exit
+App\User:all()->toArray();
+App\User::all()->toArray();
+exit
+$article = new App\Article();
+$article->toArray();
+$article->title = '初めてのタイトル'
+$article->title = '初めての本文　'
+$article->published_at = Carbon\Carbon:now();
+$article->published_at = Carbon\Carbon::now();
+$article->toArray();
+$article->save();;
+$article->drop();
+App\Article::all()->toArray()
+exit
+$article = new App\Article;
+$article->title = '2件目の記事';
+$article->body = 'ほげほげ';
+$article->published_at = Carbon\Carbon::now();
+$article->save();
+App\Article::all()->toArray();
+App\Artilce::find(1)->toArray();
+App\Article::find(1)->toArray();
+App\Article::find(2)->toArray();
+App\Article::findOrFail(2)->toArray();
+App\Article::findOrFail(3)->toArray();
+App\Article::where('id', '>', 0)->get()->toArray();
+App\Article::where('id','>', 1)->get()->toArray();
+App\Article::count();
+App\Article::where('id','>',1)->count();
+$article = App\Article::find(2);
+$article->body = 'ふがふがに更新'
+$article->save();
+App\Article::find(2)->toArray();
+$article = App\Article::find(2);
+$article->delete();
+App\Article::all()->toArray();
+App\Article::create(['title'=>'3件目の記事','body'=>'我輩は猫である','published_at'=> Carbon\Carbon::now()]);
+App\Article::create(['title'=>'3件目の記事','body'=>'3件目の記事の本文','published_at'=>Carbon\Carbon::now()]);
+App\Article::create(['title' => '３件目の記事', 'body' => '吾輩は猫である', 'published_at' => Carbon\Carbon::now()]);
+App\Article::create(['title' => '３件目の記事', 'body' => '吾輩は猫である', 'published_at' => Carbon\Carbon::now()]);
+exit
+App\Article::create(['title'=>'3件目の記事','body'=>'3件目の記事の本文','published_at'=>Carbon\Carbon::now()]);
+App\Article::all()->toArray();
+exit
+$article = App\Article::first();
+$article->published_at
+$article->published_at = "2017-06-01 11:00:00"
+$article->published_at
+$article = App\Article::first();
+$article->published_at
+$article->published_at = "2017-06-01 11:00:00"
+$article->published_at
+exit
+$article = App\Article::first();
+$article->published_at
+$article->published_at = "2017-06-01 11:00:00"
+$article->published_at
+exit
+$article = App\Article::first();
+$article->title = 'lowercase';
+$article->title
+App\Artilcle::all()->toArray();
+App\Artilcle::all()->toArray();
+App\Article::all()->toArray();
+exit
+App\Post::create(['name'=>'山本', 'body'=>'こんにちは','published_at'=>Carbon\Carbon::now()]);
+App\Post::create(['name'=>'山本', 'body'=>'こんにちは','published_at'=>Carbon\Carbon::now(),'reply_id'=>0 ]);
+App\Post::create(['name'=>'山本', 'body'=>'こんにちは','published_at'=>Carbon\Carbon::now(),'reply_id'=>0 ]);
+App\Post::create(['name'=>'山本', 'body'=>'こんにちは','published_at'=>Carbon\Carbon::now(),'reply_id'=>0 ]);
+App\Post::create(['reply_id'=>0, 'name'=>'山本', 'body'=>'こんにちは', 'password'=>'fdsafs', 'posted_at'=>Carbon\Carbon::now()]);
+App\Post::create(['reply_id'=>0, 'name'=>'山本', 'body'=>'こんにちは', 'password'=>'fdsafs', 'posted_at'=>Carbon\Carbon::now()]);
+exit
+App\Post::create(['reply_id'=>0, 'name'=>'山本', 'body'=>'こんにちは', 'password'=>'fdsafs', 'posted_at'=>Carbon\Carbon::now()]);
+exit
+exit
+$article = nw App\Post;
+$article = new App\Post;
+$article->name ='井上';
+$article->body = '追加の記事';
+$article->published_at = Carbon\Carbon::now();
+$article->save();
+$articl->posted_at = Carbon\Carbon::now();
+exit
+$post = new App\Post
+$post->name = '井上'
+$post->body = '追加の記事'
+$post->posted_at = Carbon\Carbon::now()
+$post->password = 'fadssaf'
+$post->save();
+App\Post::all()->toArray();
+exit
+$post = App\Post
+$post = new App\Post
+$post->id
+$post->toArray();
+DB::posts->toArray();
+DB::posts
+exit
+exit

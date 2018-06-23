@@ -1,0 +1,127 @@
+{
+	"name": "cacher-vscode",
+	"displayName": "Cacher - Code Snippets",
+	"description": "Code snippet library for pro developers. Access your personal and team snippets across all your devices.",
+	"version": "1.0.3",
+	"author": "Penguin Labs, LLC",
+	"publisher": "Cacher",
+	"icon": "images/logo.png",
+	"galleryBanner": {
+		"color": "439FE0"
+	},
+	"license": "UNLICENSED",
+	"engines": {
+		"vscode": "^1.21.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"snippets",
+		"gists",
+		"code library",
+		"cacher"
+	],
+	"activationEvents": [
+		"*",
+		"onCommand:cacher.setup",
+		"onCommand:cacher.insertSnippet",
+		"onCommand:cacher.createSnippet"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "cacher.setup",
+				"title": "Setup",
+				"category": "Cacher"
+			},
+			{
+				"command": "cacher.insertSnippet",
+				"title": "Insert Snippet",
+				"category": "Cacher"
+			},
+			{
+				"command": "cacher.createSnippet",
+				"title": "Create Snippet",
+				"category": "Cacher"
+			},
+			{
+				"command": "cacher.openSnippet",
+				"title": "Open Snippet in App",
+				"category": "Cacher"
+			},
+			{
+				"command": "cacher.openSnippetPage",
+				"title": "Open Snippet Page",
+				"category": "Cacher"
+			},
+			{
+				"command": "cacher.refresh",
+				"title": "Refresh Snippets",
+				"category": "Cacher"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "cacher.insertSnippet",
+					"group": "1_modification",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "cacher.createSnippet",
+					"group": "1_modification",
+					"when": "editorTextFocus"
+				}
+			]
+		},
+		"keybindings": [
+			{
+				"command": "cacher.insertSnippet",
+				"key": "shift+alt+i",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "cacher.createSnippet",
+				"key": "shift+alt+c",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "cacher.openSnippet",
+				"key": "shift+alt+o"
+			},
+			{
+				"command": "cacher.openSnippetPage",
+				"key": "shift+alt+p"
+			},
+			{
+				"command": "cacher.refresh",
+				"key": "shift+alt+r"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^7.0.43",
+		"tslint": "^5.8.0",
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.14"
+	},
+	"dependencies": {
+		"lodash": "^4.17.5",
+		"request": "^2.85.0"
+	},
+	"__metadata": {
+		"id": "9d95592f-ed80-4788-bc0a-5bf361eb5463",
+		"publisherId": "547463d7-5147-42c0-a6d7-85f18b2d15ed",
+		"publisherDisplayName": "Cacher"
+	}
+}

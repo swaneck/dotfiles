@@ -1,0 +1,112 @@
+{
+	"name": "vscode-esa",
+	"displayName": "vscode-esa",
+	"description": "Markdown support for Esa.",
+	"version": "0.1.2",
+	"publisher": "kken0201",
+	"icon": "media/icon.png",
+	"author": {
+		"name": "kken0201",
+		"url": "http://kken.io/blog",
+		"email": "kken.com@gmail.com"
+	},
+	"engines": {
+		"vscode": "^1.12.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kken0201/vscode-esa.git"
+	},
+	"activationEvents": [
+		"onCommand:extension.openPost",
+		"onCommand:extension.createPost",
+		"onCommand:extension.updatePost"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.openPost",
+				"title": "esa: Open Exists Post"
+			},
+			{
+				"command": "extension.createPost",
+				"title": "esa: Create New Post"
+			},
+			{
+				"command": "extension.updatePost",
+				"title": "esa: Update Post",
+				"icon": {
+					"light": "./media/icon.svg",
+					"dark": "./media/icon.svg"
+				}
+			}
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"when": "resourceLangId == markdown",
+					"command": "markdown.showPreview",
+					"alt": "markdown.showPreviewToSide",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceLangId == markdown",
+					"command": "extension.updatePost",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceScheme == markdown",
+					"command": "extension.updatePost",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"configuration": {
+		"title": "Esa Configuration",
+		"type": "object",
+		"properties": {
+			"esa.token": {
+				"type": "string",
+				"default": "",
+				"description": "Copy your Personal Access Token from the website. (esa: https://[team].esa.io/user/tokens/new)"
+			},
+			"esa.teamName": {
+				"type": "string",
+				"default": "",
+				"description": "Copy your Team Name."
+			},
+			"esa.myName": {
+				"type": "string",
+				"default": "",
+				"description": "Copy your Screen Name."
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0",
+		"mocha": "^2.3.3",
+		"@types/node": "^6.0.40",
+		"@types/mocha": "^2.2.32"
+	},
+	"dependencies": {
+		"request": "^2.81.0",
+		"request-promise-native": "^1.0.4"
+	},
+	"__metadata": {
+		"id": "a41e1ce3-bef8-406b-a6fe-45e4f24eaeb4",
+		"publisherId": "f20420d8-a98b-45c2-9057-040de4c39f5c",
+		"publisherDisplayName": "kken0201"
+	}
+}

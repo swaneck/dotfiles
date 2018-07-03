@@ -84,10 +84,6 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-"Color Theme
-set background=dark
-colorscheme solarized8
-
 syntax on
 set t_Co=256
 
@@ -116,8 +112,8 @@ Plugin 'sudo.vim'
 
 
 Plugin 'tpope/vim-fugitive'
-"Gothum color theme
-Plugin 'whatyouhide/vim-gotham'
+"Iceberg color theme
+Plugin 'cocopon/iceberg.vim'
 "Powerlineのプラグイン
 Plugin 'lokaltog/vim-powerline'
 "NerdTreeのプラグイン
@@ -154,3 +150,12 @@ filetype plugin indent on    " required
 let g:Powerline_symbols = 'fancy'
 set laststatus=2
 
+"Color Theme
+colorscheme iceberg
+
+"背景の透過
+highlight Normal ctermbg=none 
+highlight NonText ctermbg=none 
+highlight LineNr ctermbg=none 
+highlight Folded ctermbg=none
+highlight EndOfBuffer ctermbg=none
